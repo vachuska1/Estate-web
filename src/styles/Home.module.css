@@ -1,0 +1,61 @@
+.container {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.left, .right {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+    position: relative;
+    transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out;
+    background-size: cover;
+    background-position: center;
+}
+
+.left {
+    background-image: url(../images/gen8.webp);
+    clip-path: polygon(0 0, 100% 0, 90% 100%, 0% 100%);
+}
+
+.right {
+    background-image: url("../images/gen2.webp");
+    clip-path: polygon(10% 0, 100% 0, 100% 100%, 0 100%);
+}
+
+/* Efekt na hover */
+.left:hover, .right:hover {
+    transform: scale(1.03);
+    filter: brightness(1.2);
+}
+.text {
+    font-size: 2rem; /* Velikost textu */
+    text-align: center;
+    color: rgb(249, 255, 192); /* Bílý text */
+    text-transform: uppercase; /* Velká písmena */
+    font-weight: 700; /* Tučné písmo */
+    letter-spacing: 2px; /* Lepší čitelnost */
+    text-shadow: 
+        -2px -2px 0px black,  
+         2px -2px 0px black,  
+        -2px  2px 0px black,  
+         2px  2px 0px black; /* Černý obrys */
+}
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column; /* Karty se zarovnají pod sebe */
+    }
+
+    .left, .right {
+        width: 100vw; /* Karty budou mít celou šířku */
+        height: 100vh; /* Každá zabere polovinu výšky obrazovky */
+        clip-path: none; /* Odebrání zkosení, pokud by vadilo */
+    }
+}

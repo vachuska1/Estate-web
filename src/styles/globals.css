@@ -1,0 +1,13 @@
+/* Nastaví stránku na celou obrazovku */
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;700&display=swap');
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden; /* Skryje posuvník, pokud není třeba */
+  background: radial-gradient(ellipse, #d9dcd3, #070707);
+
+  font-family: 'Rajdhani', sans-serif;
+}
