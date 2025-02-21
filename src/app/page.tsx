@@ -6,10 +6,10 @@ export default function Home() {
   return (
     <div className={styles.container}>
       <Link href="/odhady" className={styles.left}>
-        <div className={styles.text}>Oceňování nemovitých věcí</div>
+      <div className={[styles.textLeft, styles.text].join(" ")}>Oceňování nemovitých věcí</div>
       </Link>
       <Link href="/design" className={styles.right}>
-        <div className={styles.text}>Tvorba webu - Web design</div>
+        <div className={[styles.textRight, styles.text].join(" ")}>Tvorba webu - Web design</div>
       </Link>
     </div>
   );

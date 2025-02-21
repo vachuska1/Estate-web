@@ -7,7 +7,7 @@ html, body {
   width: 100vw;
   height: 100vh;
   overflow: hidden; /* Skryje posuvník, pokud není třeba */
-  background: radial-gradient(ellipse, #d9dcd3, #070707);
+  background: radial-gradient(ellipse, #d9dcd3, #354082);
 
   font-family: 'Rajdhani', sans-serif;
 }
