@@ -1,3 +1,5 @@
+
+
 /* Nastavení wrapperu s průhledným pozadím */
 .wrapper {
     position: relative;
@@ -7,7 +9,7 @@
     justify-content: center;
     min-height: 100vh;
     text-align: center;
-    z-index: 2;
+    z-index: 1;
   }
   
   .wrapper::before {
@@ -65,9 +67,11 @@
     backdrop-filter: blur(10px);
     padding: 20px;
     border-radius: 10px;
+    border: 1px solid rgb(193, 189, 189);
     text-align: center;
     width: 280px;
     transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    cursor: text;
   }
   
   .card:hover {
@@ -96,55 +100,200 @@
   }
   
   .property {
-    padding: 10px;
+    display: flex; /* Zarovnání obsahu */
+    justify-content: center; /* Vycentrování horizontálně */
+    align-items: center; /* Vycentrování vertikálně */
+    height: 300px; /* Výška slideru na mobilech */
+    overflow: hidden; /* Skryje případné přetahy */
   }
   
   .property img {
-    width: 100%;
-    height: auto;
+    width: 100%; /* Obrázek se roztáhne na šířku */
+    height: 100%; /* Obrázek se roztáhne na výšku */
+    object-fit: cover; /* Zachová správné proporce a vyplní oblast */
     border-radius: 10px;
   }
   
-  /* Kontakt */
-  .contact {
-    margin-top: 50px;
-    text-align: center;
-    position: relative;
-    z-index: 2;
-  }
-  
-  .contact h2 {
-    font-size: 1.8rem;
-    margin-bottom: 10px;
-  }
-  
-  .contact p {
+/* 🚀 FUTURISTICKÝ FORMULÁŘ */
+
+/* 🚀 FUTURISTICKÝ FORMULÁŘ */
+
+.contactWrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1400px;
+    padding: 2rem;
+    margin: 100px 0;
+    transition: all 0.3s ease-in-out;
+    z-index: 10;
+}
+
+.contactInfo {
+    flex: 1;
+    text-align: justify;
+    color: rgb(14, 13, 13);
     font-size: 1.2rem;
+    margin-bottom: 75px;
+    line-height: 1.1;
+    padding-left: 20px;
+}
+
+.contactForm {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.contactForm form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-width: 500px;
+    width: 90%;
+}
+
+.contactForm input,
+.contactForm textarea {
+    width: 90%;
+    padding: 0.75rem;
+    border: 1px solid #0099ff;
+    border-radius: 8px;
+    background: rgba(0, 0, 0, 0.6);
+    color: #0ff;
+    font-size: 1rem;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.contactForm input:focus,
+.contactForm textarea:focus {
+    background: rgba(0, 255, 255, 0.2);
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.8);
+}
+
+
+.checkboxContainer {
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 8px;
   }
   
+  .checkboxContainer input {
+    margin-right: 5px;
+    width: auto; /* Zajistí, že checkbox nebude zabírat zbytečně moc místa */
+  }
+  
+  .checkboxContainer span {
+    font-size: 0.9em;
+    margin-left: 20px;
+    width: 80%;
+  }
+  
+  .checkboxContainer a {
+    color: blue;
+    text-decoration: none;
+  }
+  
+  .checkboxContainer a:hover {
+    text-decoration: underline;
+  }
+  
+  .submit-button:disabled {
+    background-color: #ccc;
+  }
+  
+  .message {
+    margin-top: 10px;
+    font-size: 0.9em;
+  }
+  
+  .success {
+    color: green;
+  }
+  
+  .error {
+    color: red;
+  }
+
+.contactForm button {
+    width: 200px;
+    padding: 0.75rem;
+    background: linear-gradient(90deg, #00f, #0ff);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: all 0.3s ease-in-out;
+}
+
+.contactForm button:hover {
+    background: linear-gradient(90deg, #0ff, #00f);
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.8);
+}
+
+.status {
+    margin-top: 1rem;
+    font-weight: bold;
+    color: #0ff;
+    text-align: center;
+}
+   
   /* Tlačítko zpět */
-  .back {
-    margin-top: 40px;
-    position: relative;
+  .backButton {
+    text-align: center;
+    margin: 40px 0;
     z-index: 2;
   }
   
-  .back a {
+  .backButton button {
+    background: linear-gradient(to right, #0066cc, #00b3b3, #33ccff); /* Přechod modré do azurové */
+  transition: background 0.3s ease; /* Plynulý přechod při hoveru */
     color: white;
-    font-size: 1.2rem;
-    text-decoration: none;
-    border: 2px solid white;
+    border: none;
     padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
     border-radius: 5px;
-    transition: all 0.3s ease-in-out;
   }
   
-  .back a:hover {
-    background: white;
-    color: black;
+  .backButton button:hover {
+    background-color: #005bb5;
   }
   
+  
+
+  @media (max-width: 768px) {
+    .property {
+      max-width: 100%; /* Na mobilech obrázek roztáhne na celou šířku */
+    }
+    .property img {
+        height: 250px; /* Na mobilech obrázek roztáhne na celou šířku */
+    }
+    .contactWrapper {
+        flex-direction: column;
+        align-items: center; /* Zajistí centrování */
+        text-align: center;
+    }
+
+    .contactInfo, .contactForm {
+        width: 340px;
+        text-align: center;
+        font-size: 1.2rem;
+    }
+    .contactInfo {
+        padding-left: 0;
+    }
+    .contactForm button {
+        width: 100px;
+    }
+    .checkboxContainer span {
+        font-size: 0.7em;
+        margin-left: 20px;
+      }
+  }
