@@ -7,6 +7,27 @@ html, body {
   width: 100%;
   min-height: 100vh;
   overflow-x: hidden;
-  background: white;
+  background: linear-gradient(
+    to bottom, 
+    #555555, #5A5A61, #60606E, #65657B, #6B6B88, #707095, #7676A2, #7C7CAF, 
+    #8181BC, #8787C9, #8D8DD6, #9393E3, #898FE6, #7F8BE6, #7587E6, #6A83E6, 
+    #607FE6, #567BE6, #4C77E6, #4173E6, #376FE6, #2D6BE6, #2367E6, #1963E6, 
+    #0F5FE6, #005BE6, #0057D9, #0053CC, #004FBF, #004BB3, #0047A6, #004399, 
+    #003F8C, #003B80, #003773, #003366, #1D306A, #3A2D6E, #562A72, #732776
+  );
+  
   font-family: 'Rajdhani', sans-serif;
+}
+
+@media (max-width: 768px) {
+  html, body {
+    background: linear-gradient(
+      to right, 
+      #555555, #5A5A61, #60606E, #65657B, #6B6B88, #707095, #7676A2, #7C7CAF, 
+      #8181BC, #8787C9, #8D8DD6, #9393E3, #898FE6, #7F8BE6, #7587E6, #6A83E6, 
+      #607FE6, #567BE6, #4C77E6, #4173E6, #376FE6, #2D6BE6, #2367E6, #1963E6, 
+      #0F5FE6, #005BE6, #0057D9, #0053CC, #004FBF, #004BB3, #0047A6, #004399, 
+      #003F8C, #003B80, #003773, #003366, #1D306A
+    );
+  }
 }

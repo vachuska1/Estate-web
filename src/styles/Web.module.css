@@ -1,0 +1,309 @@
+.container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    text-align: center;
+    color: rgb(203, 244, 255);
+    z-index: 100;
+    overflow: hidden;
+}
+
+.container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        45deg,
+  #001f3f, #003366, #004c99, #0066cc, #0080ff,
+  #0099ff, #00b3ff, #00ccff, #00e6ff, #00ffff,
+  #00ffe6, #00ffcc, #00ffb3, #00ff99, #00ff80,
+  #00ff66, #00ff4c, #00ff33, #00ff1a, #00ff00
+    ),
+    url("../images/gen1.webp") no-repeat center center/cover;
+    opacity: 0.1; /* Pouze pozadí bude průhledné */
+    background-blend-mode: overlay;
+    z-index: -1; /* Umístění pod obsah */
+}
+
+.title, .subtitle {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: rgb(62, 38, 56); /* Černá barva textu */
+    text-shadow: 
+      -1px -1px 0 white,  
+      1px -1px 0 white,  
+      -1px 1px 0 white,  
+      1px 1px 0 white; /* Bílý okraj */
+    margin-bottom: 1rem;
+  }
+  
+  .description, .text {
+    font-size: 1.2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    color: rgb(255, 255, 255);
+    text-shadow: 
+      -1px -1px 0 rgb(36, 34, 34),  
+      1px -1px 0 rgb(36, 34, 34),  
+      -1px 1px 0 rgb(36, 34, 34),  
+      1px 1px 0 rgb(36, 34, 34);
+  }
+  
+  .gallery {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+  }
+  
+  .image {
+    width: 100%;
+    max-width: 1200px; /* Nebo jiná maximální šířka podle potřeby */
+    border-radius: 10px;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .section {
+    margin: 3rem 0;
+  }
+  
+  .subtitle {
+    font-size: 2rem;
+    font-weight: bold;
+  }
+  
+
+
+/* 🔹 Obecná šířka pro animace */
+.waveContainer,
+.ballContainer {
+  width: 100%;
+  margin: 40px auto;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* 🔹 Pulsující energetická vlna */
+.waveContainer {
+  position: relative;
+  height: 80px;
+  background: linear-gradient(90deg, rgba(0, 255, 255, 0.1), cyan, rgba(0, 255, 255, 0.1));
+  border-radius: 50px;
+  box-shadow: 0 0 20px cyan;
+}
+
+.wave {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(90deg, rgba(0, 255, 255, 0.3) 0%, rgba(0, 255, 255, 0.6) 50%, rgba(0, 255, 255, 0.3) 100%);
+  animation: waveAnimation 4s infinite linear;
+}
+
+@keyframes waveAnimation {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* 🔹 Obecná šířka pro animace */
+.orbitContainer {
+  width: 80%;
+  margin: 40px auto;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* 🔹 Orbitální rotující prstence */
+.orbitContainer {
+  position: relative;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.orbit {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border: 2px solid rgba(0, 255, 255, 0.6);
+  animation: orbitRotate 6s infinite linear;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 20px cyan;
+}
+
+@keyframes orbitRotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* 🔹 Malé částice kroužící po orbitě */
+.particle {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: cyan;
+  border-radius: 50%;
+  box-shadow: 0 0 10px cyan;
+}
+
+.particle:nth-child(1) {
+  top: 0;
+  left: 50%;
+  animation: particleMove1 3s infinite linear;
+}
+
+.particle:nth-child(2) {
+  bottom: 0;
+  left: 50%;
+  animation: particleMove2 3s infinite linear reverse;
+}
+
+.particle:nth-child(3) {
+  left: 0;
+  top: 50%;
+  animation: particleMove3 3s infinite linear;
+}
+
+@keyframes particleMove1 {
+  0% { transform: rotate(0deg) translateX(75px) rotate(0deg); }
+  100% { transform: rotate(360deg) translateX(75px) rotate(-360deg); }
+}
+
+@keyframes particleMove2 {
+  0% { transform: rotate(0deg) translateX(75px) rotate(0deg); }
+  100% { transform: rotate(360deg) translateX(75px) rotate(-360deg); }
+}
+
+@keyframes particleMove3 {
+  0% { transform: rotate(0deg) translateY(75px) rotate(0deg); }
+  100% { transform: rotate(360deg) translateY(75px) rotate(-360deg); }
+}
+
+  
+
+
+
+/* 🔹 KONTAKTNÍ SEKCE */
+.contactSection {
+    width: 80%;
+    margin: 50px auto;
+    text-align: center;
+}
+
+/* 🔹 KONTAKTNÍ INFO */
+.contactInfo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+/* 🔹 JEDNOTLIVÉ ŘÁDKY */
+.contactItem {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.2rem;
+    color: white;
+    text-shadow: 
+      -1px -1px 0 rgb(36, 34, 34),  
+      1px -1px 0 rgb(36, 34, 34),  
+      -1px 1px 0 rgb(36, 34, 34),  
+      1px 1px 0 rgb(36, 34, 34);
+    transition: all 0.3s ease-in-out;
+}
+
+.contactLink {
+    font-size: 1.3rem;
+    text-decoration: underline;
+    color: white;
+    text-shadow: 
+      -1px -1px 0 rgb(36, 34, 34),  
+      1px -1px 0 rgb(36, 34, 34),  
+      -1px 1px 0 rgb(36, 34, 34),  
+      1px 1px 0 rgb(36, 34, 34);
+    transition: all 0.3s ease-in-out;
+    margin-top: 5px;
+
+}
+
+
+/* 🔹 EFEKT PŘI NAJETÍ */
+.contactItem:hover {
+    transform: scale(1.05);
+}
+
+/* 🔹 IKONY */
+.icon {
+    font-size: 1.5rem;
+    color: cyan;
+    animation: pulse 1.5s infinite alternate;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.2); }
+}
+
+  
+
+
+
+
+
+
+
+
+  .backButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 150px;
+    height: 150px;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: rgb(110, 255, 19);
+    border: 2px solid rgb(0, 0, 0);
+    border-radius: 50%;
+    font-size: 20px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: all 0.3s ease-in-out;
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    z-index: 1000;
+  }
+  
+  .backButton a {
+    color: rgb(246, 63, 31);
+    text-decoration: none;
+    text-align: center;
+  }
+  
+  .backButton:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+    transform: scale(1.1);
+  }
+  
+  @media (max-width: 768px) {
+    .title, .subtitle, .description, .text {
+        margin: 10px 20px;
+    }
+    .backButton {
+        font-size: 13px;
+        width: 65px;
+        height: 65px;
+
+    }
+  }
