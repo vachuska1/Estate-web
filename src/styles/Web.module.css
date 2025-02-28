@@ -25,7 +25,7 @@
   #00ffe6, #00ffcc, #00ffb3, #00ff99, #00ff80,
   #00ff66, #00ff4c, #00ff33, #00ff1a, #00ff00
     ),
-    url("../images/gen1.webp") no-repeat center center/cover;
+    url("/images/gen1.webp") no-repeat center center/cover;
     opacity: 0.1; /* Pouze pozadí bude průhledné */
     background-blend-mode: overlay;
     z-index: -1; /* Umístění pod obsah */

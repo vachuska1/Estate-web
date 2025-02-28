@@ -6,7 +6,8 @@
     "dev": "concurrently \"next dev --turbo\" \"start http://localhost:3000\"",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "export": "next export"
   },
   "dependencies": {
     "autoprefixer": "^10.4.20",
