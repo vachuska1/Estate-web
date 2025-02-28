@@ -86,9 +86,11 @@ const Odhady = () => {
     setMessage("");
   
     try {
-      const response = await fetch("/api/sendEmail", {
+      const response = await fetch("https://odhadyvachuska.cz/api/sendEmail", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+        },
         body: JSON.stringify(formData),
       });
   
