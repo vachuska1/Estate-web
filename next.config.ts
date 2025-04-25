@@ -2,7 +2,7 @@
 const nextConfig = {
   output: "export",
   trailingSlash: true,
-  assetPrefix: "./",
+  assetPrefix: "/",
   images: {
     unoptimized: true, // Vypne optimalizaci obrázků
   },

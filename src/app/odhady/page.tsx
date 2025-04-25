@@ -1,4 +1,4 @@
-"use client";
+"use client"
 
 import styles from "@/styles/Odhady.module.css";
 import Link from "next/link";
@@ -10,7 +10,12 @@ import Image from "next/image";
 import { useState } from "react";
 
 
+
+
 const Odhady = () => {
+
+
+
   const sliderSettings = {
     dots: true,
     infinite: true,
@@ -111,6 +116,7 @@ const Odhady = () => {
   
 
   return (
+
     <div className={styles.wrapper}>
       <div className={styles.header}>
         <h1>Oceňování nemovitých věcí</h1>

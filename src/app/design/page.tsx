@@ -1,10 +1,11 @@
-"use client";
+"use client"
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import styles from "@/styles/Web.module.css";
 import { MdPerson, MdPhone, MdEmail, MdLocationOn, MdBusiness } from "react-icons/md";
+
 
 
 const images = [
@@ -19,6 +20,8 @@ const images = [
 export default function Design() {
   const [currentImage, setCurrentImage] = useState(0);
   const [backgroundStyle, setBackgroundStyle] = useState({});
+
+
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -42,6 +45,8 @@ export default function Design() {
   }, []);
 
   return (
+
+      
     <div className={styles.container} style={backgroundStyle}>
       <h1 className={styles.title}>Tvorba webových stránek</h1>
       <p className={styles.description}>
