@@ -43,10 +43,10 @@ export const metadata: Metadata = {
     type: 'website',
     images: [
       {
-        url: '/images/gen8.webp',
-        width: 1024,
-        height: 1024,
-        alt: 'Hlavní služby - Oceňování nemovitostí a Webdesign'
+        url: 'https://www.odhadyvachuska.cz/AV_logo.png', // OG obrázek (min. 1200x630px)
+        width: 600,
+        height: 600,
+        alt: 'Logo Ing. Aleš Vachuška - Odhady nemovitostí',
       }
     ]
   },
