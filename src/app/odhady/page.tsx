@@ -78,14 +78,8 @@ const Odhady = () => {
   const handleCheckboxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setIsChecked(e.target.checked);
   };
-  
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!isChecked) {
-      setMessage("Musíte souhlasit se zpracováním osobních údajů");
-      return;
-    }
-  
     setIsSubmitting(true);
     setMessage("");
   
@@ -96,21 +90,24 @@ const Odhady = () => {
         body: JSON.stringify(formData),
       });
   
-      const data = await response.json();
+      const data = await response.json(); // Nyní vždy dostaneme JSON
       
-      if (!response.ok) throw new Error(data.error || "Nepodařilo se odeslat");
+      if (!response.ok) {
+        throw new Error(data.error || "Nepodařilo se odeslat formulář");
+      }
   
-      setMessage("Formulář úspěšně odeslán! Brzy se Vám ozvu");
+      setMessage(data.message || "Formulář úspěšně odeslán!");
       setFormData({ name: "", email: "", phone: "", address: "", reason: "", message: "" });
-      setIsChecked(false);
-      
-    } catch (error: unknown) {
-      const message = error instanceof Error ? error.message : "Nastala chyba při odesílání formuláře";
-      setMessage(message);
-      console.error("Chyba při odesílání:", error);
+  
+    } catch (error) {
+      const err = error instanceof Error ? error.message : "Neznámá chyba";
+      setMessage(`Chyba: ${err}`);
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
+  
   return (
 
     <div className={styles.wrapper}>

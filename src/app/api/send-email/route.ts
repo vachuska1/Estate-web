@@ -5,8 +5,11 @@ export async function POST(req: NextRequest) {
   try {
     const { name, email, phone, address, reason, message } = await req.json();
 
+    // Validace vstupů
     if (!name || !email || !message) {
-      return new Response(JSON.stringify({ error: "Vyplňte povinná pole" }), { 
+      return new Response(JSON.stringify({ 
+        error: "Vyplňte povinná pole (jméno, email, zpráva)" 
+      }), {
         status: 400,
         headers: { 'Content-Type': 'application/json' }
       });
@@ -17,8 +20,7 @@ export async function POST(req: NextRequest) {
       auth: {
         user: process.env.EMAIL_USER,
         pass: process.env.EMAIL_PASS,
-      },
-     // tls: { rejectUnauthorized: false } // Pouze pro vývoj!
+      }
     });
 
     const mailOptions = {
@@ -26,27 +28,31 @@ export async function POST(req: NextRequest) {
       to: process.env.EMAIL_USER,
       replyTo: email,
       subject: `Nový požadavek: ${reason || 'Ocenění nemovitosti'}`,
-      html: `
-        <h2>Nový požadavek na odhad</h2>
-        <p><strong>Jméno:</strong> ${name}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        ${phone ? `<p><strong>Telefon:</strong> ${phone}</p>` : ''}
-        ${address ? `<p><strong>Adresa:</strong> ${address}</p>` : ''}
-        ${reason ? `<p><strong>Důvod:</strong> ${reason}</p>` : ''}
-        <h3>Zpráva:</h3>
-        <p>${message.replace(/\n/g, '<br>')}</p>
-      `
+      html: `...` // zachovejte původní HTML šablonu
     };
 
     await transporter.sendMail(mailOptions);
-    return new Response(JSON.stringify({ success: true }), {
+    
+    // Vždy vracet JSON odpověď
+    return new Response(JSON.stringify({ 
+      success: true,
+      message: "E-mail byl úspěšně odeslán" 
+    }), {
       status: 200,
       headers: { 'Content-Type': 'application/json' }
     });
 
-} catch (error: unknown) {
-    const err = error instanceof Error ? error.message : 'Unknown error';
+  } catch (error: unknown) {
+    const err = error instanceof Error ? error.message : 'Neznámá chyba';
     console.error("Chyba při odesílání emailu:", err);
-    return new Response("Nepodařilo se odeslat email: " + err, { status: 500 });
+    
+    // Důležité: Vracet JSON i při chybě
+    return new Response(JSON.stringify({ 
+      error: "Nepodařilo se odeslat e-mail",
+      details: err 
+    }), {
+      status: 500,
+      headers: { 'Content-Type': 'application/json' }
+    });
   }
 }
