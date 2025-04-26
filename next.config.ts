@@ -3,11 +3,21 @@ const nextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
-  output: "export",
+  // Odstraňte "output: export" - API routes budou fungovat
   trailingSlash: true,
-  assetPrefix: "/",
   images: {
-    unoptimized: true, // Vypne optimalizaci obrázků
+    unoptimized: true,
   },
+  // Povolte CORS pro API
+  async headers() {
+    return [
+      {
+        source: '/api/:path*',
+        headers: [
+          { key: 'Access-Control-Allow-Origin', value: '*' },
+          { key: 'Access-Control-Allow-Methods', value: 'POST' }
+        ]
+      }
+    ]
+  }
 };
-export default nextConfig;

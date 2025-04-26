@@ -1,8 +1,10 @@
+
 {
-    "rewrites": [
-      {
-        "source": "/api/send-email",
-        "destination": "/api/send-email"
-      }
-    ]
+  "regions": ["fra1"],
+  "functions": {
+    "api/send-email.js": {
+      "memory": 1024,
+      "maxDuration": 30
+    }
   }
+}

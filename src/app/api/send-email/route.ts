@@ -1,15 +1,14 @@
+// src/app/api/send-email/route.ts
 import { NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
 
-// src/app/api/send-email/route.ts
-export const runtime = 'edge'; // Povoluje Edge Functions
-export const dynamic = 'force-dynamic'; // Zakazuje caching
+// Důležité: Odstraňte 'edge' runtime!
+export const dynamic = 'force-dynamic';
 
 export async function POST(request: Request) {
   try {
     const { name, email, phone, address, reason, message } = await request.json();
 
-    // Validace
     if (!name || !email || !message) {
       return NextResponse.json(
         { error: "Vyplňte povinná pole" },
@@ -17,7 +16,6 @@ export async function POST(request: Request) {
       );
     }
 
-    // Odeslání emailu
     const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
@@ -29,12 +27,13 @@ export async function POST(request: Request) {
     await transporter.sendMail({
       from: `"Kontaktní formulář" <${process.env.EMAIL_USER}>`,
       to: process.env.EMAIL_USER,
-      subject: `Nová zpráva od ${name}`,
+      subject: reason ? `${reason} (${name})` : `Zpráva od ${name}`,
       html: `
         <p><strong>Jméno:</strong> ${name}</p>
         <p><strong>Email:</strong> ${email}</p>
         ${phone ? `<p><strong>Telefon:</strong> ${phone}</p>` : ''}
         ${address ? `<p><strong>Adresa:</strong> ${address}</p>` : ''}
+        ${reason ? `<p><strong>Důvod:</strong> ${reason}</p>` : ''}
         <p><strong>Zpráva:</strong></p>
         <p>${message}</p>
       `,
@@ -43,9 +42,9 @@ export async function POST(request: Request) {
     return NextResponse.json({ success: true });
 
   } catch (error) {
-    console.error(error);
+    console.error('Chyba při odesílání:', error);
     return NextResponse.json(
-      { error: "Chyba serveru" },
+      { error: "Nepodařilo se odeslat e-mail" },
       { status: 500 }
     );
   }
