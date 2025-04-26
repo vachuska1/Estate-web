@@ -2,7 +2,7 @@
 {
   "regions": ["fra1"],
   "functions": {
-    "api/send-email.js": {
+    "src/app/api/send-email/route.ts": {
       "memory": 1024,
       "maxDuration": 30
     }
