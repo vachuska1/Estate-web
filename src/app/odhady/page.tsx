@@ -81,35 +81,35 @@ const Odhady = () => {
   
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!isChecked) {
+      setMessage("Musíte souhlasit se zpracováním osobních údajů");
+      return;
+    }
+  
     setIsSubmitting(true);
     setMessage("");
-
+  
     try {
       const response = await fetch("/api/send-email", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
-
-      if (!response.ok) throw new Error("Nepodařilo se odeslat formulář");
+  
+      const data = await response.json();
       
-      setMessage("Formulář byl úspěšně odeslán!");
-      setFormData({
-        name: "",
-        email: "",
-        phone: "",
-        address: "",
-        reason: "",
-        message: "",
-      });
-    } catch (error) {
+      if (!response.ok) throw new Error(data.error || "Nepodařilo se odeslat");
+  
+      setMessage("Formulář úspěšně odeslán! Brzy se Vám ozvu");
+      setFormData({ name: "", email: "", phone: "", address: "", reason: "", message: "" });
+      setIsChecked(false);
+      
+    } catch (error: unknown) {
+      const message = error instanceof Error ? error.message : "Nastala chyba při odesílání formuláře";
+      setMessage(message);
       console.error("Chyba při odesílání:", error);
-      setMessage("Nastala chyba při odesílání formuláře. Zkuste to prosím později.");
-    } finally {
-      setIsSubmitting(false);
     }
   };
-  
 
   return (
 
