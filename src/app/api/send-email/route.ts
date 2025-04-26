@@ -1,7 +1,9 @@
 import { NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
 
-export const dynamic = 'force-dynamic'; // Řeší problémy s cachingem na Vercelu
+// src/app/api/send-email/route.ts
+export const runtime = 'edge'; // Povoluje Edge Functions
+export const dynamic = 'force-dynamic'; // Zakazuje caching
 
 export async function POST(request: Request) {
   try {
