@@ -79,36 +79,32 @@ const Odhady = () => {
     setIsChecked(e.target.checked);
   };
   
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-  
-    if (!isChecked) {
-      setMessage("Musíte souhlasit se zpracováním osobních údajů.");
-      return;
-    }
-  
     setIsSubmitting(true);
     setMessage("");
-  
+
     try {
-      const response = await fetch("https://odhadyvachuska.cz/api/sendEmail/route.ts", {
+      const response = await fetch("/api/send-email", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
-  
-      if (!response.ok) {
-        throw new Error("Chyba při odesílání formuláře.");
-      }
-  
-      setMessage("Email byl úspěšně odeslán!");
-      setFormData({ name: "", email: "", phone: "", address: "", reason: "", message: "" });
-      setIsChecked(false);
+
+      if (!response.ok) throw new Error("Nepodařilo se odeslat formulář");
+      
+      setMessage("Formulář byl úspěšně odeslán!");
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        address: "",
+        reason: "",
+        message: "",
+      });
     } catch (error) {
-      console.error("Chyba:", error);
-      setMessage("Nepodařilo se odeslat email.");
+      console.error("Chyba při odesílání:", error);
+      setMessage("Nastala chyba při odesílání formuláře. Zkuste to prosím později.");
     } finally {
       setIsSubmitting(false);
     }
@@ -180,14 +176,19 @@ const Odhady = () => {
     <input type="text" name="reason" value={formData.reason} onChange={handleChange} placeholder="Důvod ocenění" />
     <textarea name="message" value={formData.message} onChange={handleChange} placeholder="Zpráva" required></textarea>
     <div className={styles.checkboxContainer}>
-    <input type="checkbox" checked={isChecked} onChange={handleCheckboxChange} required />
-    <span>
-      Souhlasím se{" "}
-      <Link href="/odhady/ZasadyOchrany" target="_blank" rel="noopener noreferrer">
+    <input
+    type="checkbox"
+    checked={isChecked}
+    onChange={handleCheckboxChange}
+    required
+  />
+  <span>
+    Souhlasím se{" "}
+    <Link href="/odhady/ZasadyOchrany" target="_blank" rel="noopener noreferrer">
       zpracováním osobních údajů
     </Link>{" "}
-      v souladu s nařízením Evropského parlamentu a Rady (EU) 2016/679 (GDPR) za účelem vyřízení mého požadavku.
-    </span>
+    v souladu s nařízením Evropského parlamentu a Rady (EU) 2016/679 (GDPR) za účelem vyřízení mého požadavku.
+  </span>
 </div>
 
 

@@ -53,9 +53,11 @@ export default function Design() {
   Tvořím moderní a rychlé weby pro prezentaci osob i firem s využitím nejnovějších technologií, 
   jako jsou React, Next.js a Framer Motion.
   </p>
+  <br />
 <p className={styles.description}>
   Weby jsou výkonné, bezpečné a uživatelsky přívětivé.
 </p>
+<br /><br />
 <h2 className={styles.subtitle}>Ukázky webů</h2>
 
       {/* Galerie s plynulým přechodem */}
