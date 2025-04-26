@@ -49,13 +49,11 @@ export async function POST(request: Request) {
       { status: 200 }
     );
 
-  } catch (error: any) {
-    console.error("Chyba při odesílání:", error);
+  } catch (error: unknown) {
+    const err = error instanceof Error ? error.message : 'Neznámá chyba';
+    console.error("Chyba při odesílání:", err);
     return NextResponse.json(
-      { 
-        error: "Nepodařilo se odeslat e-mail",
-        details: error.message 
-      },
+      { error: "Nepodařilo se odeslat e-mail", details: err },
       { status: 500 }
     );
   }
